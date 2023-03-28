@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestApplyToken(t *testing.T) {
+func TestToken(t *testing.T) {
 	appId := ""
 	appSecret := ""
 
@@ -13,6 +13,9 @@ func TestApplyToken(t *testing.T) {
 		t.Skip("skipping test due to empty appId or appSecret")
 	}
 	if err := client.ApplyToken(); err != nil {
+		t.Fatalf("%v", err)
+	}
+	if err := client.RefreshToken(); err != nil {
 		t.Fatalf("%v", err)
 	}
 	t.Logf("%#v", client)
